@@ -1,0 +1,41 @@
+{% extends "indice/index.html" %}
+
+{% block "titulo_pestana" %}
+<title>Buscar Curso</title>
+{% endblock  %}
+
+{% block "menu" %} {% endblock "menu" %}
+
+{% block "header" %}
+
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Para buscar un curso:</h2>
+<a class="btn btn-primary" href="#form"> Click aqui </a>
+
+{% endblock "header" %}
+
+{% block "body_block" %}
+
+  <form action= {% url 'busqueda_curso' %} method="get" id="form">
+
+    {% csrf_token %}
+    
+    <table>
+    {{buscador.as_table}}
+    </table>
+    
+    <input type="submit" placeholder="Enviar">
+
+  </form>
+
+  {% if dato %}
+    Se buscó por el dato: {{dato}}
+    {% for curso in cursos_buscados %}
+    <li>
+      {{curso}}
+    </li>
+    {% endfor %}
+    {% else %}
+    No se buscó nada...
+    {% endif %}
+
+{% endblock "body_block" %}

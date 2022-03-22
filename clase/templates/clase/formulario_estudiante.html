@@ -1,0 +1,30 @@
+{% extends "indice/index.html" %}
+
+{% block "titulo_pestana" %}
+<title>Crear Estudiante</title>
+{% endblock  %}
+
+{% block "menu" %} {% endblock "menu" %}
+
+{% block "header" %}
+
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Para agregar un estudiante:</h2>
+<a class="btn btn-primary" href="#form"> Click aqui </a>
+
+{% endblock "header" %}
+
+{% block "body_block" %}
+  
+  <form action= {% url 'formulario_estudiante' %} method="post" id="form">
+
+    {% csrf_token %}
+    
+    <table>
+    {{formulario.as_table}}
+    </table>
+    
+    <input type="submit" placeholder="Enviar">
+
+  </form>
+
+{% endblock "body_block" %}
